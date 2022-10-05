@@ -26,15 +26,25 @@ public class Main {
     // Методы. Домашнее задание 2
 
     public static void DeviceYear(int clientDeviceYear, int clientOS) {
+        String osName;
+        String osVersion;
+        osName = getClientOs(clientOS);
+        osVersion = getOsVersion(clientDeviceYear);
+        System.out.println("Установите "+" "+osVersion+" "+"версию "+osName);
+    }
+    public static String getClientOs(int os){
+        if (os == 0) {
+            return "iOs";
+        }else{
+            return "Android";
+        }
+    }
+    public static String getOsVersion(int year){
         int currentYear = LocalDate.now().getYear();
-        if (clientDeviceYear >= currentYear && clientOS == 0) {
-            System.out.println("Установите версию приложения для Android по ссылке");
-        } else if (clientDeviceYear >= currentYear && clientOS == 1) {
-            System.out.println("Установите версию приложения для iOS по ссылке");
-        } else if (clientDeviceYear < currentYear && clientOS == 0) {
-            System.out.println("Установите облегченную версию приложения для Android по ссылке");
-        } else if (clientDeviceYear < currentYear && clientOS == 1) {
-            System.out.println("Установите облегченную версию приложения для iOS по ссылке");
+        if(year<currentYear){
+            return "облегченную";
+        }else{
+            return  "полную";
         }
     }
 
